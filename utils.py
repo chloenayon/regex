@@ -5,7 +5,7 @@ def parse_names(text):
     return list_of_names
 
 def top_names(who_query):
-    pages = 6
+    pages = 16
     print who_query
     urls = google.search(who_query,num=pages,start=0,stop=pages)
     result=[]
@@ -14,19 +14,22 @@ def top_names(who_query):
     names={}
     counter = 0
     for thing in result:
-        if counter < 10:
-            u = urllib2.urlopen(thing)
-            page = u.read()
-            soup = bs4.BeautifulSoup(page,'html')
-            raw = soup.get_text()
-            possibles = parse_names(raw)
-            power = int(math.log(pages, 2))-int(math.log(counter+1, 2))+1
+        if counter < pages:
+            try:
+                u = urllib2.urlopen(thing)
+                page = u.read()
+                soup = bs4.BeautifulSoup(page,'html')
+                raw = soup.get_text()
+                possibles = parse_names(raw)
+                power = int(math.log(pages, 2))-int(math.log(counter+1, 2))+1
+                for name in possibles:
+                    if name not in names:
+                        names[name] = power
+                    else:
+                        names[name]+=power
+            except:
+                pass
             counter+=1
-            for name in possibles:
-                if name not in names:
-                    names[name] = power
-                else:
-                    names[name]+=power
     i = 0
     top={}
     while i < 1:
@@ -41,4 +44,4 @@ def top_names(who_query):
         i+=1
     print top
 
-top_names("who is president")
+top_names("who is Champ?")
