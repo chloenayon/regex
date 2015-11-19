@@ -4,7 +4,7 @@ def parse_names(text):
     list_of_names = re.findall('[A-Z][a-z]+ [A-Z][a-z]+', text)
     stopWords = "United States|American"
     for name in list_of_names:
-        re.sub(name, stopWords, "bad_name")
+        if name in stopWords:
     return list_of_names
 
 def top_names(who_query):
