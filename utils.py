@@ -2,6 +2,9 @@ import urllib2, google, bs4, re, math
 
 def parse_names(text):
     list_of_names = re.findall('[A-Z][a-z]+ [A-Z][a-z]+', text)
+    stopWords = "United States|American"
+    for name in list_of_names:
+        re.sub(name, stopWords, "bad_name")
     return list_of_names
 
 def top_names(who_query):
@@ -18,21 +21,22 @@ def top_names(who_query):
             try:
                 u = urllib2.urlopen(thing)
                 page = u.read()
-                soup = bs4.BeautifulSoup(page,'html')
+                soup = bs4.BeautifulSoup(page,"html.parser")
                 raw = soup.get_text()
                 possibles = parse_names(raw)
                 power = int(math.log(pages, 2))-int(math.log(counter+1, 2))+1
                 for name in possibles:
-                    if name not in names:
-                        names[name] = power
-                    else:
-                        names[name]+=power
+                    if name != "bad_name":
+                        if name not in names:
+                            names[name] = power
+                        else:
+                            names[name]+=power
             except:
                 pass
             counter+=1
     i = 0
     top={}
-    while i < 1:
+    while i < 5:
         most_mentioned=None
         mentions = 0
         for name in names:
@@ -44,4 +48,4 @@ def top_names(who_query):
         i+=1
     print top
 
-top_names("who is Champ?")
+top_names("who is the President?")
