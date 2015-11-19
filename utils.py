@@ -15,7 +15,6 @@ def top_names(who_query):
     counter = 0
     for thing in result:
         if counter < 10:
-            print counter
             u = urllib2.urlopen(thing)
             page = u.read()
             soup = bs4.BeautifulSoup(page,'html')
@@ -42,4 +41,4 @@ def top_names(who_query):
         i+=1
     print top
 
-top_names("who is Champ?")
+top_names("who is president")
