@@ -1,16 +1,9 @@
 import urllib2, google, bs4, re, math
 
 def parse_names(text):
-    list_of_names = re.findall('[A-Z][a-z]+ [A-Z][a-z]+', text)
     stopWords = "United States|American|Page|Watch|The"
-    print list_of_names
-    print "--------" 
-    for name in list_of_names:
-        has_bad_expression = re.search(name, stopWords)
-        if has_bad_expression != None:
-            print name
-            print has_bad_expresion
-            name = "bad_name"
+    re.sub(stopWords, "", text)
+    list_of_names = re.findall('[A-Z][a-z]+ [A-Z][a-z]+', text)
     print list_of_names
     print " "
     return list_of_names
@@ -31,15 +24,13 @@ def top_names(who_query):
                 page = u.read()
                 soup = bs4.BeautifulSoup(page,"html.parser")
                 raw = soup.get_text()
-                print "got here"
                 possibles = parse_names(raw)
                 power = int(math.log(pages, 2))-int(math.log(counter+1, 2))+1
                 for name in possibles:
-                    if name != "bad_name":
-                        if name not in names:
-                            names[name] = power
-                        else:
-                            names[name]+=power
+                    if name not in names:
+                        names[name] = power
+                    else:
+                        names[name]+=power
             except:
                 print "error loading page"
             counter+=1
@@ -57,4 +48,4 @@ def top_names(who_query):
         i+=1
     print top
 
-top_names("who is the Champ?")
+top_names("who is Champ?")
