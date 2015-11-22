@@ -1,14 +1,14 @@
 import urllib2, google, bs4, re, math
 
-def parse_names(text):
-    stopWords = "United States/American/Page/Watch/The"
-    re.sub("The", "", text)
+def parse_names(text, query):
+    stopWords = "/United States/American/Page/Watch/The/"
+    re.sub(stopWords, "", text)
     list_of_names = re.findall('[A-Z][a-z]+ [A-Z][a-z]+', text)
     list_of_names_2 = re.findall('[A-Z][a-z]+ [A-Z][a-z]+ [A-Z][a-z]+ ', text)
     for thing in list_of_names_2:
         list_of_names.append(thing)
     print list_of_names
-    print "x^x"
+    print #"x^x"
     return list_of_names
 
 def top_names(who_query):
