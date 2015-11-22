@@ -4,6 +4,9 @@ def parse_names(text):
     stopWords = "United States/American/Page/Watch/The"
     re.sub("The", "", text)
     list_of_names = re.findall('[A-Z][a-z]+ [A-Z][a-z]+', text)
+    list_of_names_2 = re.findall('[A-Z][a-z]+ [A-Z][a-z]+ [A-Z][a-z]+ ', text)
+    for thing in list_of_names_2:
+        list_of_names.append(thing)
     print list_of_names
     print "x^x"
     return list_of_names
@@ -33,10 +36,11 @@ def top_names(who_query):
                         names[name]+=power
             except:
                 print "error loading page"
+            print counter
             counter+=1
     i = 0
     top={}
-    while i < 5:
+    while i < 1:
         most_mentioned=None
         mentions = 0
         for name in names:
@@ -46,6 +50,8 @@ def top_names(who_query):
         names[most_mentioned]=0
         top[most_mentioned]=mentions
         i+=1
+        print most_mentioned
+        return most_mentioned
     print top
 
-top_names("who is Champ?")
+##top_names("who is Champ?")
