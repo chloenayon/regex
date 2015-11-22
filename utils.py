@@ -52,6 +52,7 @@ def top_names(who_query):
         i+=1
         print most_mentioned
         return most_mentioned
-    print top
+    #print top
+    return top
 
 ##top_names("who is Champ?")
