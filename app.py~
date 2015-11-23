@@ -13,10 +13,9 @@ def start():
         return render_template("home.html", s = session)
     else:
         question = request.form['query']
-        response = utils.top_names(question)
         session['has_answer'] = True
-        session['answer'] = str(utils.top_answers(question))
-        return render_template("home.html", s = session, res = response)
+        session['answer'] = str(utils.top_names(question))
+        return render_template("home.html", s = session)
     
 
 if __name__=="__main__":
