@@ -1,6 +1,8 @@
 import urllib2, google, bs4, re, math
 
 def parse_names_who(text):
+    subWords = "The|Watch|Page|Who|What|An|If|Top|Bottom"
+    text = re.sub(subWords, "", text)
     list_of_names = re.findall('[A-Z][a-z]+ [A-Z][a-z]+', text)
     print list_of_names
     print #"x^x"
