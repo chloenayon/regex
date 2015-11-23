@@ -1,6 +1,48 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <title>                                                                      \
+\                                                                               
+                                                                               \
+                                                                                
+    Regex                                                                      \
+\                                                                               
+                                                                               \
+                                                                                
+  </title>
+  <style>
+    * {
+    font-family: "Lucida Console", monospace;
+    font-size: 20px;
+    }
+    img {
+<!--    background-image: url(http://www.bigfootinvestments.com/wp-content/uplo\
+\                                                                               
+\                                                                              \
+                                                                                
+ads/2015/02/magic8ball.png);                                                   \
+\                                                                               
+                                                                               \
+                                                                                
+-->
+    background-position: center bottom;
+    opacity: 0.7;
+    }
 
-  {% r %}
-  
+  </style>
+</head>
+  <body>
+  <center>
+  <form method = "GET">
+    <input type = "submit" value = "Ask Again">
+  </form>
+  {% if s.has_answer %}
+     <p>Did you mean...{{ s.answer }}</p>
+  {% endif %}
+   </center>
+  <h1>
+<img src="http://www.bigfootinvestments.com/wp-content/uploads/2015/02/magic8ba\
+ll.png">
+</h1>
+</body>
 </html>
