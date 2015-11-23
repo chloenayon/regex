@@ -1,5 +1,11 @@
 import urllib2, google, bs4, re, math
 
+def choose(text):
+    if "who" in text or "Who" in text:
+        top_names_who(text)
+    elif "when" in text or "When" in text:
+        top_dates_when(text)
+
 def parse_names_who(text):
     list_of_names = re.findall('[A-Z][a-z]+ [A-Z][a-z]+', text)
     print list_of_names
