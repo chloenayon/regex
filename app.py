@@ -15,6 +15,7 @@ def start():
         question = request.form['query']
         response = utils.top_answers(question)
         session['has_answer'] = True
+        session['answer'] = utils.top_answers(question)
         return render_template("home.html", s = session, res = response)
     
 
