@@ -16,7 +16,7 @@ def start():
         response = utils.top_answers(question)
         session['has_answer'] = True
         session['answer'] = utils.top_answers(question)
-        return render_template("home.html", s = session, res = response)
+        return render_template("result.html", s = session, res = response)
     
 
 if __name__=="__main__":
