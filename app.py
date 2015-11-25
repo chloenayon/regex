@@ -13,7 +13,7 @@ def start():
         return render_template("home.html", s = session)
     else:
         question = request.form['query']
-        response = utils.top_answers(question)
+        response = "utils.top_answers(question)"
         session['has_answer'] = True
         session['answer'] = utils.top_answers(question)
         return render_template("result.html", s = session, res = response)

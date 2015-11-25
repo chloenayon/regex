@@ -1,7 +1,8 @@
 import urllib2, google, bs4, re, math
 
 def parse_names_who(text):
-    subWords = "The|Watch|Page|Who|What|An|If|Top|Bottom"
+    subWords = """The|Watch|Page|Who|What|An|If|Top|Bottom|United States|Keep Going|House|City|New|York|America|Featured|In|By
+"""
     text = re.sub(subWords, "", text)
     list_of_names = re.findall('[A-Z][a-z]+ [A-Z][a-z]+', text)
     print list_of_names
@@ -18,15 +19,14 @@ def top_names_who(who_query):
     names={}
     counter = 0
     for thing in result:
-        if counter < pages:
+        print thing
+        if counter < pages and counter != 8:
             try:
                 u = urllib2.urlopen(thing)
                 page = u.read()
                 soup = bs4.BeautifulSoup(page,"html.parser")
                 raw = soup.get_text()
-                print "2"
                 possibles = parse_names_who(raw)
-                print "2"
                 power = int(math.log(pages, 2))-int(math.log(counter+1, 2))+1
                 for name in possibles:
                     if name not in names:
